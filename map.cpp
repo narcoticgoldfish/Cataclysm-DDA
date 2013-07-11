@@ -749,6 +749,36 @@ bool map::vehproceed(game* g){
    return true;
 }
 
+power_source* map::add_power_source(game *g, const int x, const int y)
+{
+    power_source* pSource = new power_source(100,1,x,y);
+    power_source_list.push_back(pSource);
+    return pSource;
+}
+
+power_source* map::get_power_source_present(const int x, const int y)
+{
+    for (unsigned int i = 0; i < power_source_list.size(); i++)
+    {
+        if(power_source_list[i]->getIsPresentAtPoint(x,y))
+            return power_source_list[i];
+    }
+    return NULL;
+}
+bool map::remove_power_source(const int x, const int y)
+{
+    for (std::vector<power_source*>::iterator it = power_source_list.begin(); it != power_source_list.end(); it++)
+    {
+        if((*it)->getIsPresentAtPoint(x,y))
+        {
+            delete(*it);
+            power_source_list.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
 bool map::displace_water (const int x, const int y)
 {
     if (move_cost_ter_furn(x, y) > 0 && has_flag(swimmable, x, y)) // shallow water
@@ -1136,6 +1166,25 @@ switch (furn(x, y)) {
    return true;
   }
   break;
+ case f_oven:
+    {
+        result = rng(0, 30);
+        if (res) *res = result;
+        if (str >= result) {
+        sound += "metal clanging!";
+        furn_set(x, y, f_null);
+        spawn_item(x, y, "scrap", 0, rng(2, 4));
+        spawn_item(x, y, "element", 0, rng(1,2));
+        spawn_item(x, y, "sheet_metal", 0, rng(1,2));
+        return true;
+        }
+        else
+        {
+           sound += "clang!";
+           return true;
+        }
+    }
+    break;
 
  case f_sink:
  case f_toilet:
@@ -1226,7 +1275,7 @@ switch (furn(x, y)) {
    return true;
   }
   break;
-  
+
  case f_skin_wall:
  case f_skin_door:
  case f_skin_door_o:
@@ -2099,7 +2148,7 @@ void map::shoot(game *g, const int x, const int y, int &dam,
     {
         bool destroyed = false;
         int chance = (i_at(x, y)[i].volume() > 0 ? i_at(x, y)[i].volume() : 1);   // volume dependent chance
-  
+
         if (dam > i_at(x, y)[i].bash_resist() && one_in(chance))
         {
             i_at(x, y)[i].damage++;
@@ -2108,7 +2157,7 @@ void map::shoot(game *g, const int x, const int y, int &dam,
         {
             destroyed = true;
         }
-  
+
         if (destroyed)
         {
             for (int j = 0; j < i_at(x, y)[i].contents.size(); j++)
@@ -2525,7 +2574,7 @@ bool map::add_item_or_charges(const int x, const int y, item new_item, int overf
         for (int n = 0; n < i_at(x, y).size(); n++) {
             item* curit = &(i_at(x, y)[n]);
             if ( tryaddcharges == true && curit->type->id == add_type ) {
-                if ( skip_checks == true || ( curit->volume() + add_volume <= maxvolume ) ) { 
+                if ( skip_checks == true || ( curit->volume() + add_volume <= maxvolume ) ) {
                   curit->charges += new_item.charges;
                   //mvprintz(5,5,c_ltred,"check2: added charges %d",curit->charges);
                   return true;

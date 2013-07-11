@@ -583,7 +583,7 @@ f_dumpster,
 f_crate_c, f_crate_o,
 f_canvas_wall, f_canvas_door, f_canvas_door_o, f_groundsheet, f_fema_groundsheet,
 f_skin_wall, f_skin_door, f_skin_door_o,  f_skin_groundsheet,
-f_mutpoppy,
+f_mutpoppy, f_generator,
 
 num_furniture_types
 };
@@ -693,7 +693,9 @@ const furn_t furnlist[num_furniture_types] = { // MUST match enum furn_id above!
 {"animalskin floor",    ';', c_brown,   0, -1,
     mfb(transparent)|mfb(indoors), &iexamine::shelter},
 {"mutated poppy flower", 'f', c_red,    1, -1,
-    mfb(transparent), &iexamine::flower_poppy}
+    mfb(transparent), &iexamine::flower_poppy},
+{"generator", '@', c_red,    1, -1,
+    mfb(transparent)|mfb(deconstruct), &iexamine::generator}
 };
 
 /*
@@ -806,7 +808,7 @@ enum field_id {
  fd_blood,
  fd_bile,
  fd_gibs_flesh,
- fd_gibs_veggy, 
+ fd_gibs_veggy,
  fd_web,
  fd_slime,
  fd_acid,
@@ -843,10 +845,10 @@ const field_t fieldlist[] = {
 
 {{"scraps of flesh",	"bloody meat chunks",	"heap of gore"},			'~',
  {c_brown, c_ltred, c_red},	{true, true, true}, {false, false, false},	   2500},
- 
+
 {{"shredded leaves and twigs",	"shattered branches and leaves",	"broken vegetation tangle"},			'~',
- {c_ltgreen, c_ltgreen, c_green},	{true, true, true}, {false, false, false},	   2500}, 
- 
+ {c_ltgreen, c_ltgreen, c_green},	{true, true, true}, {false, false, false},	   2500},
+
 {{"cobwebs","webs", "thick webs"},			'}',
  {c_white, c_white, c_white},	{true, true, false},{false, false, false},   0},
 
@@ -954,7 +956,7 @@ public:
  */
  int setFieldAge(const int new_age);
 
- 
+
  /*
  DEPRECATED, DO NOT USE
  This was originally so you could overwrite useless fields, but now they can all live together so... don't bother.
@@ -966,7 +968,7 @@ public:
   return (type == fd_null || type == fd_blood || type == fd_bile ||
           type == fd_slime);
  } //DEPRECATED
- 
+
 
  /*
  Returns if the current field is dangerous or not.
