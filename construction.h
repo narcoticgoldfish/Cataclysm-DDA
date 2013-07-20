@@ -78,5 +78,6 @@ struct construct // Construction functions.
  void done_move(game *, point);
  void done_tape(game *, point);
  void done_deconstruct(game *, point);
+ void done_power_generator(game *, point);
 
 };

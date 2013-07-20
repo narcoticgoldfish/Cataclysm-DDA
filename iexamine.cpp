@@ -560,6 +560,17 @@ void iexamine::flower_poppy(game *g, player *p, map *m, int examx, int examy) {
   m->spawn_item(examx, examy, "poppy_bud", 0);
 }
 
+void iexamine::generator (game *g, player *p, map *m, int examx, int examy)
+{
+    //g->add_msg("You see a generator.");
+    if (!query_yn("Use the %s?",m->furnname(examx, examy).c_str())) {
+      none(g, p, m, examx, examy);
+      g->add_msg("Nevermind.");
+      return;
+    }
+    g->add_msg("You use a generator.");
+}
+
 void iexamine::pick_plant(game *g, player *p, map *m, int examx, int examy, std::string itemType, int new_ter) {
   if (!query_yn("Pick %s?", m->tername(examx, examy).c_str())) {
     none(g, p, m, examx, examy);

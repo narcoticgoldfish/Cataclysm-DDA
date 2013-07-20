@@ -746,6 +746,36 @@ bool map::vehproceed(game* g){
    return true;
 }
 
+power_source* map::add_power_source(game *g, const int x, const int y)
+{
+    power_source* pSource = new power_source(100,1,x,y);
+    power_source_list.push_back(pSource);
+    return pSource;
+}
+
+power_source* map::get_power_source_present(const int x, const int y)
+{
+    for (unsigned int i = 0; i < power_source_list.size(); i++)
+    {
+        if(power_source_list[i]->getIsPresentAtPoint(x,y))
+            return power_source_list[i];
+    }
+    return NULL;
+}
+bool map::remove_power_source(const int x, const int y)
+{
+    for (std::vector<power_source*>::iterator it = power_source_list.begin(); it != power_source_list.end(); it++)
+    {
+        if((*it)->getIsPresentAtPoint(x,y))
+        {
+            delete(*it);
+            power_source_list.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
 bool map::displace_water (const int x, const int y)
 {
     if (move_cost_ter_furn(x, y) > 0 && has_flag(swimmable, x, y)) // shallow water
@@ -1139,8 +1169,7 @@ switch (furn(x, y)) {
    return true;
   }
   break;
-
- case f_sink:
+  case f_sink:
  case f_toilet:
  case f_bathtub:
   result = dice(8, 4) - 8;

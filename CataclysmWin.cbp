@@ -13,8 +13,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-Os" />
+					<Add directory="../gettext-runtime/include" />
 					<Add directory="../gettext-tools/include" />
-					<Add directory="include/gettext-tools" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,-stack,12000000,-subsystem,windows" />
@@ -24,6 +24,8 @@
 					<Add library="libs\gettext-tools\gettextpo.lib" />
 					<Add directory="../gettext-tools/lib" />
 					<Add directory="libs/gettext-tools" />
+					<Add library="..\gettext-tools\lib\gettextpo.lib" />
+					<Add library="..\gettext-runtime\lib\intl.lib" />
 				</Linker>
 			</Target>
 			<Target title="Debug">
@@ -46,9 +48,15 @@
 					<Add library="..\gettext-tools\lib\gettextpo.lib" />
 					<Add directory="../gettext-runtime/lib" />
 					<Add directory="../gettext-tools/lib" />
+					<Add library="..\gettext-runtime\lib\intl.lib" />
+					<Add library="..\gettext-tools\lib\gettextpo.lib" />
 				</Linker>
 			</Target>
 		</Build>
+		<Linker>
+			<Add library="..\gettext-runtime\lib\intl.lib" />
+			<Add library="..\gettext-tools\lib\gettextpo.lib" />
+		</Linker>
 		<Unit filename="SDLMain.h" />
 		<Unit filename="action.cpp" />
 		<Unit filename="action.h" />
@@ -191,6 +199,8 @@
 		<Unit filename="pldata.h" />
 		<Unit filename="posix_time.cpp" />
 		<Unit filename="posix_time.h" />
+		<Unit filename="power_source.cpp" />
+		<Unit filename="power_source.h" />
 		<Unit filename="profession.cpp" />
 		<Unit filename="profession.h" />
 		<Unit filename="ranged.cpp" />

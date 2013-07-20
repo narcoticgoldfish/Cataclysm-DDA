@@ -582,7 +582,7 @@ f_dumpster,
 f_crate_c, f_crate_o,
 f_canvas_wall, f_canvas_door, f_canvas_door_o, f_groundsheet, f_fema_groundsheet,
 f_skin_wall, f_skin_door, f_skin_door_o,  f_skin_groundsheet,
-f_mutpoppy,
+f_mutpoppy, f_generator,
 
 num_furniture_types
 };
@@ -694,7 +694,9 @@ const furn_t furnlist[num_furniture_types] = { // MUST match enum furn_id above!
 {"animalskin floor",    ';', c_brown,   0, -1,
     mfb(transparent)|mfb(indoors), &iexamine::shelter},
 {"mutated poppy flower", 'f', c_red,    1, -1,
-    mfb(transparent), &iexamine::flower_poppy}
+    mfb(transparent), &iexamine::flower_poppy},
+{"generator", '@', c_red,    1, -1,
+    mfb(transparent)|mfb(deconstruct), &iexamine::generator}
 };
 
 /*
@@ -776,6 +778,7 @@ struct map_extras {
   chances[16] = 0;
  }
 };
+
 
 struct spawn_point {
  int posx, posy;

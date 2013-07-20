@@ -16,6 +16,7 @@
 #include "monster.h"
 #include "npc.h"
 #include "vehicle.h"
+#include "power_source.h"
 #include "graffiti.h"
 #include "lightmap.h"
 
@@ -169,6 +170,12 @@ class map
  bool vehproceed(game* g);
 // move water under wheels. true if moved
  bool displace_water (const int x, const int y);
+
+ //generators & power
+std::vector<power_source*> power_source_list;
+power_source* add_power_source(game *g, const int x, const int y);
+power_source* get_power_source_present(const int x, const int y);
+bool remove_power_source(const int x, const int y);
 
 // Furniture
  void set(const int x, const int y, const ter_id new_terrain, const furn_id new_furniture);
