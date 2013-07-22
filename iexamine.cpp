@@ -564,11 +564,19 @@ void iexamine::generator (game *g, player *p, map *m, int examx, int examy)
 {
     //g->add_msg("You see a generator.");
     if (!query_yn("Use the %s?",m->furnname(examx, examy).c_str())) {
-      none(g, p, m, examx, examy);
+      //none(g, p, m, examx, examy);
       g->add_msg("Nevermind.");
       return;
     }
-    g->add_msg("You use a generator.");
+    //otherwise, attempt to activate the
+    else
+    {
+        cPowerSource *pSource = m->get_power_source_present(examx,examy);
+        if(pSource)
+        {
+            pSource->activate();
+        }
+    }
 }
 
 void iexamine::pick_plant(game *g, player *p, map *m, int examx, int examy, std::string itemType, int new_ter) {

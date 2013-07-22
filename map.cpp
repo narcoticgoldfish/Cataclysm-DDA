@@ -746,14 +746,14 @@ bool map::vehproceed(game* g){
    return true;
 }
 
-power_source* map::add_power_source(game *g, const int x, const int y)
+cPowerSource* map::add_power_source(game *g, const int x, const int y)
 {
-    power_source* pSource = new power_source(100,1,x,y);
+    cPowerSource* pSource = new cPowerSource(g,x,y,100,1,1,1);
     power_source_list.push_back(pSource);
     return pSource;
 }
 
-power_source* map::get_power_source_present(const int x, const int y)
+cPowerSource* map::get_power_source_present(const int x, const int y)
 {
     for (unsigned int i = 0; i < power_source_list.size(); i++)
     {
@@ -764,7 +764,7 @@ power_source* map::get_power_source_present(const int x, const int y)
 }
 bool map::remove_power_source(const int x, const int y)
 {
-    for (std::vector<power_source*>::iterator it = power_source_list.begin(); it != power_source_list.end(); it++)
+    for (std::vector<cPowerSource*>::iterator it = power_source_list.begin(); it != power_source_list.end(); it++)
     {
         if((*it)->getIsPresentAtPoint(x,y))
         {
@@ -774,6 +774,14 @@ bool map::remove_power_source(const int x, const int y)
         }
     }
     return false;
+}
+
+void map::update_power_sources()
+{
+    for (std::vector<cPowerSource*>::iterator it = power_source_list.begin(); it != power_source_list.end(); it++)
+    {
+        (*it)->update();
+    }
 }
 
 bool map::displace_water (const int x, const int y)

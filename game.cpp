@@ -432,6 +432,10 @@ bool game::do_turn()
  if (turn.hours() == 0 && turn.minutes() == 0 && turn.seconds() == 0) // Midnight!
   cur_om->process_mongroups();
 
+  //process electricity
+    if (turn % 5 == 0) //power sources process every 5 minutes
+        m.update_power_sources();
+
 // Check if we've overdosed... in any deadly way.
  if (u.stim > 250) {
   add_msg("You have a sudden heart attack!");
@@ -2720,7 +2724,7 @@ void game::vadd_msg(const char* msg, va_list ap)
  messages.push_back( game_message(turn, s) );
 }
 
-void game::add_msg(const char* msg, ...)
+ void game::add_msg(const char* msg, ...)
 {
  va_list ap;
  va_start(ap, msg);

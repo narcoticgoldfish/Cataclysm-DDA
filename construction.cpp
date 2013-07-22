@@ -1089,7 +1089,7 @@ void construct::done_vehicle(game *g, point p)
 void construct::done_power_generator(game *g, point p)
 {
     g->add_msg("You build a generator.");
-    power_source* ps = g->m.add_power_source(g, p.x, p.y);
+    cPowerSource* ps = g->m.add_power_source(g, p.x, p.y);
 
 }
 
