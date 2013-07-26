@@ -1,0 +1,8 @@
+  {
+  "ident": "guard",
+  "name": "Security Guard",
+  "description":
+"It was easy enough to abandon Nordstrom to the undead, but now you wish you had thought to carry more ammunition.",
+  "points": 4,
+  "items": ["sw_619", "38_super", "boots", "holster", "polo_shirt", "pants"]
+ },

@@ -1,22 +1,86 @@
 [
- {
-  "ident": "unemployed",
-  "name": "Unemployed",
-  "description":
-"They say you don't have any 'useful skills', but at least your clothes fit well.",
-  "points": 0,
-  "items": ["jeans", "tshirt", "sneakers"]
- },
+
+{
+"ident": "antking",
+"name": "Ant King",
+"description":
+"The good news is that after countless days lost in study, the radioactive ants outside of town have made you their king. The bad news is the transformation is so unsettling survivors generally assume you are a monster and attack on sight.",
+"points": 5,
+"items": ["pointy_stick"],
+"mutations": ["PF_COLDBLOOD", "PF_DEFORMED3", "PF_MOUTHFLAPS", "PF_RADIOGENIC", "PF_PHEROMONE_INSECT", "PF_CHITIN2"]
+},
 
  {
-  "ident": "tailor",
-  "name": "Tailor",
-  "description":
-"You've made and adjusted clothing for some of the biggest names in town. Now, their undead bodies are trying to eat your brains. At least you'll be able to keep your own clothing repaired.",
-  "points": 1,
-  "items": ["polo_shirt", "blazer", "pants", "dress_shoes", "sewing_kit", "scissors", "manual_tailor"]
- },
+"ident": "chef",
+"name": "Chef",
+"description":
+"Bork bork! Years in the kitchen have left you carrying a prodigious bulk, but you managed to escape the carnage with a butchers knife and only a small collection of stains on your uniform.",
+"points": 2,
+"items": ["knife_butcher", "hat_chef", "jacket_chef", "pants_checkered", "dress_shoes"],
+"mutations": ["PF_PONDEROUS1"],
+"skills" : [
+     {
+      "name" : "cooking",
+      "level" : 3
+     }
+	 ]
+},
 
+{
+"ident": "electrician",
+"name": "Electrician",
+"description":
+"When the Cataclysm hit, you grabbed your crowbar and kit. Away was the only place you wanted to get - but here there are always more zombies, shit.",
+"points": 3,
+"items": ["hat_hard", "boots_steel", "pants_cargo", "polo_shirt", "screwdriver", "crowbar"],
+"skills" : [
+     {
+      "name" : "electronics",
+      "level" : 3
+     }
+	 ]
+},
+
+{
+  "ident": "furry",
+  "name": "Furry",
+  "description":
+"Reviled in the few circles aware of your existence, everything about you leaves much to be desired, but at least your fur suit provides a modicum of protection against the slavering jaws of the undead.",
+  "points": 2,
+  "items": ["wolfsuit", "fur_blanket", "mutagen_beast", "mutagen_beast", "mutagen_beast"],
+  "mutations": ["PF_ALBINO", "PF_SMELLY2", "PF_SKIN_ROUGH"] 
+ },
+ 
+ {
+  "ident": "hunter",
+  "name": "Hunter",
+  "description":
+"You try not to reflect that with every shot you expend you are one step closer to being the hunted; it's an easier thought to keep at bay with the beer you managed to salvage from the campsite on the frantic run out.",
+  "points": 4,
+  "items": ["savage_111f", "boots", "sweatshirt", "762_51", "pants_cargo", "hat_hunting", "beer"],
+  "skills" : [
+	{
+      "name" : "rifle",
+      "level" : 3
+	}
+	  ]
+     },
+ 
+  {
+	  "ident": "junkie",
+	  "name": "Junkie",
+	  "description":
+	  "You nodded off through the Cataclysm, and only ventured from the stash house when you were down to your last needle.",
+	  "points": -3,
+	  "items": ["pants", "dress_shirt", "dress_shoes", "heroin","syringe"],
+	  "addictions": [
+		  {
+		  "type": "opiate",
+		  "intensity": 10
+		  }
+	  ]
+ },
+ 
  {
   "ident": "labtech",
   "name": "Lab Technician",
@@ -25,16 +89,41 @@
   "points": 1,
   "items": ["dress_shirt", "pants", "boots", "coat_lab", "gloves_rubber", "glasses_safety"]
  },
-
+ 
  {
   "ident": "mechanic",
-  "name": "Wannabe Mechanic",
+  "name": "Mechanic",
   "description":
 "Although you never got your driver's license, you've always loved cars. You start with a wrench, a toolbelt, and some car-related reading material.",
   "points": 2,
   "items": ["tank_top", "jeans", "boots", "beltrig", "wrench", "mag_cars", "manual_mechanics"]
  },
-
+ 
+ {
+	  "ident": "regenerator",
+	  "name": "Regenerator",
+	  "description":
+	  "The Cataclysm had a disruptive effect on your biology. Your wounds heal\nrapidly, but the pain of mutation meant you couldn't grab anything useful \nbefore leaving for the shelter.",
+	  "points": 6,
+	  "items": ["pants", "dress_shirt", "dress_shoes"],
+	  "mutations": ["PF_REGEN"]
+ },
+ 
+ {
+  "ident": "security",
+  "name": "Security Guard",
+  "description":
+"It was easy enough to abandon Nordstrom to the undead, but now you wish you had thought to carry more ammunition. A lot more.",
+  "points": 3,
+  "items": ["sw_619", "boots", "pants", "38_super", "flashlight", "polo_shirt"],
+  "skills" : [
+	{
+      "name" : "pistol",
+      "level" : 1
+	}
+	  ]
+     },
+	 
  {
   "ident": "scoundrel",
   "name": "Scoundrel",
@@ -49,12 +138,12 @@
      }
   ]
  },
-
+ 
  {
   "ident": "smoker",
-  "name": "Chain Smoker",
+  "name": "Smoker",
   "description": "Everyone at work knew you as the person who always had a cigarette or two in hand. now, you're down to a single pack, and you hope you find more soon. You start out with a strong nicotine addiction, and 10 cigarettes.",
-  "points": -1,
+  "points": -2,
   "items": ["pants", "dress_shirt", "dress_shoes", "cig"],
   "addictions": [
       {
@@ -63,28 +152,22 @@
       }
   ]
  },
-  {
-	  "ident": "junkie",
-	  "name": "Junkie",
-	  "description":
-	  "Before the Apocalypse, you turned to Heroin to soothe your many problems.\nNow, your habit is your only comfort and your only drive.",
-	  "points": -1,
-	  "items": ["pants", "dress_shirt", "dress_shoes", "heroin","syringe"],
-	  "addictions": [
-		  {
-		  "type": "opiate",
-		  "intensity": 10
-		  }
-	  ]
+ 
+ {
+  "ident": "tailor",
+  "name": "Tailor",
+  "description":
+"You've made and adjusted clothing for some of the biggest names in town. Now, their undead bodies are trying to eat your brains. At least you'll be able to keep your own clothing repaired.",
+  "points": 1,
+  "items": ["polo_shirt", "blazer", "pants", "dress_shoes", "sewing_kit", "scissors", "manual_tailor"]
  },
  
  {
-	  "ident": "regenerator",
-	  "name": "Regenerator",
-	  "description":
-	  "The Cataclysm had a disruptive effect on your biology. Your wounds heal\nrapidly, but the pain of mutation meant you couldn't grab anything useful \nbefore leaving for the shelter.",
-	  "points": 12,
-	  "items": ["pants", "dress_shirt", "dress_shoes"],
-	  "mutations": ["PF_REGEN"]
+  "ident": "unemployed",
+  "name": "Unemployed",
+  "description":
+"They say you don't have any 'useful skills', but breathing puts you ahead of half that crowd these days.",
+  "points": 0,
+  "items": ["jeans", "tshirt", "sneakers"]
  }
 ]
